@@ -12,3 +12,8 @@ pom.xml.asc
 .lein-failures
 .nrepl-port
 .cpcache/
+._*
+adventofcode2021.iml
+.idea
+._.DS_Store
+.DS_Store

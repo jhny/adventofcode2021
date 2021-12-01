@@ -1,0 +1,8 @@
+{:deps        {org.clojure/clojure {:mvn/version "1.11.0-alpha3"}}
+
+ :paths       ["src" "resources"]
+ :extra-paths ["resources"]
+ :aliases     {:dev   {:extra-deps {}}
+               :nrepl {:extra-deps {nrepl/nrepl {:mvn/version "RELEASE"}}
+                       :main-opts  ["-m" "nrepl.cmdline" "--port" "58000" "-b" "0.0.0.0"]}}}
+
