@@ -28,7 +28,8 @@
 (defn build-grid [input]
   (let [x (->> input
             flatten
-            (apply max))
+            (apply max)
+            inc)
         xs (range 0 x)]
     (mapv
       (fn [_]
