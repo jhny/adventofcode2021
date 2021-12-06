@@ -15,14 +15,14 @@
       (conj (assoc xs index 6) 8)
       (update xs index dec))))
 
-(defn step-a-day [xs _]
+(defn step-day [xs _]
   (reduce step xs (range (count xs))))
 
 (comment
 
-  (count (reduce step-a-day test-input (range 80)))
+  (count (reduce step-day test-input (range 80)))
 
-  (count (reduce step-a-day input (range 80)))
+  (count (reduce step-day input (range 80)))
 
   nil)
 
@@ -32,14 +32,9 @@
 (def days [0 1 2 3 4 5 6 7 8])
 
 (defn fix-input [input]
-  (let [input (frequencies input)]
-    (reduce
-      (fn [acc day]
-        (if (contains? acc day)
-          acc
-          (assoc acc day 0)))
-      input
-      days)))
+  (merge
+    {0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 0 8 0}
+    (frequencies input)))
 
 (defn step-single-day [input _]
   (reduce
@@ -57,7 +52,11 @@
     days))
 
 (defn count-lanternfish [input days]
-  (apply + (vals (reduce step-single-day (fix-input input) (range days)))))
+  (->> input 
+    fix-input
+    (#(reduce step-single-day % (range days)))
+    vals
+    (apply +)))
 
 (comment
 
