@@ -1,4 +1,5 @@
-{:deps        {org.clojure/clojure {:mvn/version "1.11.0-alpha3"}}
+{:deps        {org.clojure/clojure {:mvn/version "1.11.0-alpha3"}
+               org.clojure/math.combinatorics {:mvn/version "0.1.6"}}
 
  :paths       ["src" "resources"]
  :extra-paths ["resources"]
