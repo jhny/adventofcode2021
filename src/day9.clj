@@ -61,13 +61,13 @@
   (list [(inc x) y] [(dec x) y] [x (inc y)] [x (dec y)]))
 
 (defn get-flow-adjecents [input coord]
-  (let [x (get-from-coord input coord)
-        xs (all-adjecent-coords coord)
-        xs (remove #(nil? (get-from-coord input %)) xs)
-        xs (remove #(= 9 (get-from-coord input %)) xs)]
-    (filter (fn [coord]
-              (< x (get-from-coord input coord)))
-      xs)))
+  (let [x (get-from-coord input coord)]
+    (->> coord
+      all-adjecent-coords
+      (remove #(nil? (get-from-coord input %)))
+      (remove #(= 9 (get-from-coord input %)))
+      (filter (fn [coord]
+                (< x (get-from-coord input coord)))))))
 
 (defn get-all-flow-adjecents* [input acc coord]
   (let [xs (get-flow-adjecents input coord)]
@@ -94,7 +94,7 @@
 
 (comment
 
-  (calc-largest-basins input)
+  (calc-largest-basins test-input)
   (calc-largest-basins input)
 
   nil)
