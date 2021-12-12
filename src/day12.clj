@@ -21,18 +21,19 @@
   (re-matches #"[a-z]*" (name k)))
 
 (defn starting-points [input]
-  (mapv (fn [x]
-          (let [y (first (disj (set x) :start))
-                visited #{:start}]
-            {:visited       visited
-             :visited-twice nil
-             :input         (set input)
-             :current       y
-             :path          [x]}))
+  (->> input
     (filter (fn [x]
-              (contains? (set x) :start)) input)))
+              (contains? (set x) :start)))
+    (mapv (fn [x]
+            (let [y (first (disj (set x) :start))
+                  visited #{:start}]
+              {:visited       visited
+               :visited-twice nil
+               :input         (set input)
+               :current       y
+               :path          [x]})))))
 
-(defn has-visited [{:keys [visited current]} new]
+(defn has-visited [{:keys [visited]} new]
   (let [one (first new)
         two (second new)]
     (or
